@@ -28,7 +28,6 @@ def check_login(**kwargs):
     return return_dic
 
 
-
 if __name__ == "__main__":
     print(get_user(userid="0001"))
     pass
