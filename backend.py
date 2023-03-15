@@ -78,11 +78,15 @@ def run_server():
     print("[Backend Server] Listening on port {} ...".format(PORT))
 
     while True:
-        client_connection, client_address = server_socket.accept()
-        request = client_connection.recv(1024).decode()
-        response = handle_request(request)
-        client_connection.sendall(response.encode())
-        client_connection.close()
+        try:
+            client_connection, client_address = server_socket.accept()
+            request = client_connection.recv(1024).decode()
+            response = handle_request(request)
+            client_connection.sendall(response.encode())
+            client_connection.close()
+        except Exception as e:
+            print("[Backend Server] Bad error occurs")
+            print(e)
 
 
 if __name__ == '__main__':
