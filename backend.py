@@ -3,10 +3,8 @@ import json
 
 from backend_utils import *
 
-HOST, PORT = "172.31.21.254", 8888
-# 18.117.181.47
-# 172.31.21.254
-# 127.0.0.1
+from const import HOST, PORT
+
 
 def handle_request(request):
     try:

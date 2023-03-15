@@ -1,13 +1,16 @@
 import pymysql
 import pymysql.cursors
 
+from const import HOST
+
 MYSQL_PARAMS = {
-    "host": "127.0.0.1",
+    "host": HOST,
     "port": 3306,
     "user": "enze",
     "passwd": "123456",
     "db": "wfu_problem"
 }
+
 
 class MySQLConnection:
     def __init__(self, params=MYSQL_PARAMS):
