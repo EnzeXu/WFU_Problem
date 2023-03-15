@@ -1,7 +1,7 @@
 import socket
 import json
 
-HOST, PORT = 'localhost', 8888
+HOST, PORT = '18.117.181.47', 8888
 
 
 def handle_request(request):
