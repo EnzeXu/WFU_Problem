@@ -6,7 +6,7 @@ from const import DB_HOST
 MYSQL_PARAMS = {
     "host": DB_HOST,
     "port": 3306,
-    "user": "enze",
+    "user": "wfu",
     "passwd": "123456",
     "db": "wfu_problem"
 }
