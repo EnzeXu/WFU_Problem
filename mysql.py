@@ -1,10 +1,10 @@
 import pymysql
 import pymysql.cursors
 
-from const import HOST
+from const import DB_HOST
 
 MYSQL_PARAMS = {
-    "host": HOST,
+    "host": DB_HOST,
     "port": 3306,
     "user": "enze",
     "passwd": "123456",
