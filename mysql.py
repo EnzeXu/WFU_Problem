@@ -13,8 +13,8 @@ MYSQL_PARAMS = {
 
 
 class MySQLConnection:
-    def __init__(self, params=MYSQL_PARAMS):
-        self.connection_params = params
+    def __init__(self, params=None):
+        self.connection_params = MYSQL_PARAMS if params is None else params
         self.connection = pymysql.connect(**self.connection_params)
         self.cursor: pymysql.cursors.Cursor = self.connection.cursor()
 
@@ -33,7 +33,14 @@ class MySQLConnection:
 
 
 if __name__ == "__main__":
-    mysql = MySQLConnection()
+    test_params = {
+        "host": "127.0.0.1", #"18.117.181.47",
+        "port": 3306,
+        "user": "wfu",
+        "passwd": "123456",
+        "db": "wfu_problem"
+    }
+    mysql = MySQLConnection(test_params)
     # mysql.execute("insert into test.t1 values (3, 'ball', 20);")
     res = mysql.execute("select * from wfu_problem.`user`;")
     # res = mysql.execute("select * from test.t1;")
