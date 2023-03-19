@@ -16,7 +16,7 @@ Returns information about a specific user.
 - **Example Request**: `http://18.117.181.47:8888/getuser?userid=0001`
 - **Example Response**:
 
-'''json
+```json
 {
     "info": {
         "request": "/getuser?userid=0001",
@@ -32,7 +32,6 @@ Returns information about a specific user.
         "email": "mb@gmail.com"
     }
 }
-
-'''
+```
 
 
