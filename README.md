@@ -142,7 +142,7 @@ Check if one user's email matches this user's password.
     },
     "request": {
         "email": "test@wfu.edu",
-        "password": "password=123456"
+        "password": "123456"
     },
     "response": {
       "result": 1,
