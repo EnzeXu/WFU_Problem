@@ -23,6 +23,7 @@ def get_user(**kwargs):
     return_dic["interest"] = interest_list
     res_group = mysql.execute("select a.groupid, group_name from (wfu_problem.`user_has_group` a join wfu_problem.`group` b on a.groupid=b.groupid) where `userid` = '{}';".format(userid))
     group_list = [item for item in res_group]
+    group_list = sorted(group_list, key=lambda x: x[0])
     return_dic["group_list"] = group_list
     return return_dic
 
@@ -43,6 +44,7 @@ def get_group(**kwargs):
             return_dic[one_key] = res[0][i]
     res_user = mysql.execute("select a.userid, username from (wfu_problem.`user_has_group` a join wfu_problem.`user` b on a.userid=b.userid) where `groupid` = '{}';".format(groupid))
     user_list = [item for item in res_user]
+    user_list = sorted(user_list, key=lambda x: x[0])
     return_dic["user_list"] = user_list
     return return_dic
 
