@@ -1,16 +1,19 @@
 import socket
 import json
+from datetime import datetime
 
 from backend_utils import *
 
 from const import HOST, PORT
 
+def get_now_string():
+    return datetime.now().strftime("%Y%m%d_%H%M%S_%f")
 
 def handle_request(request):
     try:
         method, full_query, version = request.split('\r\n')[0].split(' ')
         params = {}
-        print("[Backend Server] received request {}".format(full_query))
+        print("{} [Backend Server] received request {}".format(get_now_string(), full_query))
         if '?' in full_query:
             path, query = full_query.split('?')
             query_params = query.split('&')
@@ -122,7 +125,7 @@ def handle_request(request):
         response_data = {'error': 'Invaild request'}
         response = json.dumps(response_data)
         response_headers = "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n"
-
+    print("{} [Backend Server] sent {}".format(get_now_string(), str(response)))
     return response_headers + "\r\n" + response
 
 
@@ -131,17 +134,19 @@ def run_server():
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind((HOST, PORT))
     server_socket.listen(1)
-    print("[Backend Server] Listening on port {} ...".format(PORT))
+    print("{} [Backend Server] Listening on port {} ...".format(get_now_string(), PORT))
 
     while True:
         try:
             client_connection, client_address = server_socket.accept()
+            client_ip = client_address[0]
+            print("{} [Backend Server] Incoming connection from {}".format(get_now_string(), client_ip))
             request = client_connection.recv(1024).decode()
             response = handle_request(request)
             client_connection.sendall(response.encode())
             client_connection.close()
         except Exception as e:
-            print("[Backend Server] Bad error occurs")
+            print("{} [Backend Server] Bad error occurs".format(get_now_string()))
             print(e)
 
 
