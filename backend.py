@@ -8,7 +8,7 @@ from const import HOST, PORT
 
 
 def myprint(string):
-    with open("logs/wfu_problem.log", "w") as f:
+    with open("logs/wfu_problem.log", "a") as f:
         f.write(str(string) + "\n")
     print(string)
 
