@@ -129,8 +129,8 @@ Check if one user's email matches this user's password.
 - **Endpoint**: `/checklogin`
 - **HTTP Method**: GET
 - **Request Parameters**:
-  - `userid` (string): The unique identifier for the user.
-  - `groupid` (string): The unique identifier for the group.
+  - `email` (string): users' login email.
+  - `password` (string): password.
 - **Example Request**: `http://BACKEND_IP_ADDRESS:PORT/checklogin?email=test@wfu.edu&password=123456`
 - **Example Response**:
 
