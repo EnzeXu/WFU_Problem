@@ -13,7 +13,7 @@ Returns information about a specific user.
 - **HTTP Method**: GET
 - **Request Parameters**:
   - `userid` (string): The unique identifier for the user to retrieve information for.
-- **Example Request**: `http://18.117.181.47:8888/getuser?userid=0001`
+- **Example Request**: `http://18.117.181.47:8888/getuser?userid=U0001`
 - **Example Response**:
 
 ```json

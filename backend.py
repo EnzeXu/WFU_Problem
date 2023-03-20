@@ -39,10 +39,66 @@ def handle_request(request):
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
         elif path == '/checklogin':
-            userid = params.get('userid')
+            email = params.get('email')
             password = params.get('password')
-            if userid and password:
-                response_dic = check_login(userid=userid, password=password)
+            if email and password:
+                response_dic = check_login(email=email, password=password)
+                response_data = {
+                    'info': {
+                        'request': full_query,
+                        'request_type': path,
+                    },
+                    'request': params,
+                    'response': response_dic,
+                }
+                response = json.dumps(response_data)
+                response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+            else:
+                response_data = {'error': 'Missing "userid" parameter'}
+                response = json.dumps(response_data)
+                response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
+        elif path == '/getgroup':
+            groupid = params.get('groupid')
+            if groupid:
+                response_dic = get_group(groupid=groupid)
+                response_data = {
+                    'info': {
+                        'request': full_query,
+                        'request_type': path,
+                    },
+                    'request': params,
+                    'response': response_dic,
+                }
+                response = json.dumps(response_data)
+                response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+            else:
+                response_data = {'error': 'Missing "userid" parameter'}
+                response = json.dumps(response_data)
+                response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
+        elif path == '/joingroup':
+            userid = params.get('userid')
+            groupid = params.get('groupid')
+            if userid and groupid:
+                response_dic = join_group(userid=userid, groupid=groupid)
+                response_data = {
+                    'info': {
+                        'request': full_query,
+                        'request_type': path,
+                    },
+                    'request': params,
+                    'response': response_dic,
+                }
+                response = json.dumps(response_data)
+                response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+            else:
+                response_data = {'error': 'Missing "userid" parameter'}
+                response = json.dumps(response_data)
+                response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
+        elif path == '/leavegroup':
+            userid = params.get('userid')
+            groupid = params.get('groupid')
+            if userid and groupid:
+                response_dic = leave_group(userid=userid, groupid=groupid)
                 response_data = {
                     'info': {
                         'request': full_query,
