@@ -7,7 +7,7 @@ from backend_utils import *
 from const import HOST, PORT
 
 def get_now_string():
-    return datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def handle_request(request):
     try:
