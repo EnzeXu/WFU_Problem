@@ -1,8 +1,5 @@
-WFU Problem
+# WFU Problem: Backend Server Documentation
 ===========================
-
-# Backend Server Documentation
-
 This document outlines the endpoints and functionality of the backend server.
 
 ## 1. Get User
