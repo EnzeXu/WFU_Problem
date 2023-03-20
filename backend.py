@@ -6,15 +6,23 @@ from backend_utils import *
 
 from const import HOST, PORT
 
+
+def myprint(string):
+    with open("logs/wfu_problem.log", "w") as f:
+        f.write(str(string) + "\n")
+    print(string)
+
+
 def get_now_string():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+
 def handle_request(request):
     try:
-        print("{} [Backend Server] received original request {}".format(get_now_string(), request))
+        myprint("{} [Backend Server] received original request {}".format(get_now_string(), request))
         method, full_query, version = request.split('\r\n')[0].split(' ')
         params = {}
-        print("{} [Backend Server] received request {}".format(get_now_string(), full_query))
+        myprint("{} [Backend Server] received request {}".format(get_now_string(), full_query))
         if '?' in full_query:
             path, query = full_query.split('?')
             query_params = query.split('&')
@@ -39,7 +47,7 @@ def handle_request(request):
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
             else:
-                response_data = {'error': 'Missing "userid" parameter'}
+                response_data = {'error': 'Missing parameter'}
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
         elif path == '/checklogin':
@@ -58,7 +66,7 @@ def handle_request(request):
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
             else:
-                response_data = {'error': 'Missing "userid" parameter'}
+                response_data = {'error': 'Missing parameter'}
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
         elif path == '/getgroup':
@@ -76,7 +84,7 @@ def handle_request(request):
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
             else:
-                response_data = {'error': 'Missing "userid" parameter'}
+                response_data = {'error': 'Missing parameter'}
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
         elif path == '/joingroup':
@@ -95,7 +103,7 @@ def handle_request(request):
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
             else:
-                response_data = {'error': 'Missing "userid" parameter'}
+                response_data = {'error': 'Missing parameter'}
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
         elif path == '/leavegroup':
@@ -114,7 +122,7 @@ def handle_request(request):
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
             else:
-                response_data = {'error': 'Missing "userid" parameter'}
+                response_data = {'error': 'Missing parameter'}
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
         else:
@@ -122,11 +130,11 @@ def handle_request(request):
             response = json.dumps(response_data)
             response_headers = "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n"
     except Exception as e:
-        print(e)
+        myprint("{} [Backend Server] Error detected: {}".format(get_now_string(), str(e)))
         response_data = {'error': 'Invaild request'}
         response = json.dumps(response_data)
         response_headers = "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n"
-    print("{} [Backend Server] sent {}".format(get_now_string(), str(response)))
+    myprint("{} [Backend Server] sent {}".format(get_now_string(), str(response)))
     return response_headers + "\r\n" + response
 
 
@@ -135,20 +143,20 @@ def run_server():
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind((HOST, PORT))
     server_socket.listen(1)
-    print("{} [Backend Server] Listening on port {} ...".format(get_now_string(), PORT))
+    myprint("\n{} [Backend Server] Listening on port {} ...".format(get_now_string(), PORT))
 
     while True:
         try:
             client_connection, client_address = server_socket.accept()
             client_ip = client_address[0]
-            print("{} [Backend Server] Incoming connection from {}".format(get_now_string(), client_ip))
+            myprint("{} [Backend Server] Incoming connection from {}".format(get_now_string(), client_ip))
             request = client_connection.recv(1024).decode()
             response = handle_request(request)
             client_connection.sendall(response.encode())
             client_connection.close()
         except Exception as e:
-            print("{} [Backend Server] Bad error occurs".format(get_now_string()))
-            print(e)
+            myprint("{} [Backend Server] Bad error occurs".format(get_now_string()))
+            myprint("{} [Backend Server] Error detected: {}".format(get_now_string(), str(e)))
 
 
 if __name__ == '__main__':
