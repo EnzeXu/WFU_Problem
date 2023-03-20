@@ -11,6 +11,7 @@ def get_now_string():
 
 def handle_request(request):
     try:
+        print("{} [Backend Server] received original request {}".format(get_now_string(), request))
         method, full_query, version = request.split('\r\n')[0].split(' ')
         params = {}
         print("{} [Backend Server] received request {}".format(get_now_string(), full_query))
@@ -117,7 +118,7 @@ def handle_request(request):
                 response = json.dumps(response_data)
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
         else:
-            response_data = {'error': 'Page not found'}
+            response_data = {'error': 'Function {} not support'.format(path)}
             response = json.dumps(response_data)
             response_headers = "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n"
     except Exception as e:
