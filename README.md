@@ -153,4 +153,5 @@ Check if one user's email matches this user's password.
 ---
 
 # Database Entity-Relationship Diagram
+![5961679529234_ pic](https://user-images.githubusercontent.com/90367338/227064603-077321c1-b8c5-4750-b409-ec634d5dd24c.jpg)
 
