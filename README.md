@@ -149,3 +149,10 @@ Check if one user's email matches this user's password.
     }
 }
 ```
+
+
+================
+
+
+# Database Entity-Relationship Diagram
+
