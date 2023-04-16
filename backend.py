@@ -48,7 +48,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
             else:
                 response_data = {'error': 'Missing parameter'}
@@ -56,7 +56,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
         elif path == '/checklogin':
             email = params.get('email')
@@ -75,7 +75,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
             else:
                 response_data = {'error': 'Missing parameter'}
@@ -83,7 +83,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
         elif path == '/getgroup':
             groupid = params.get('groupid')
@@ -101,7 +101,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
             else:
                 response_data = {'error': 'Missing parameter'}
@@ -109,7 +109,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
         elif path == '/joingroup':
             userid = params.get('userid')
@@ -128,7 +128,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
             else:
                 response_data = {'error': 'Missing parameter'}
@@ -136,7 +136,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
         elif path == '/leavegroup':
             userid = params.get('userid')
@@ -155,7 +155,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
             else:
                 response_data = {'error': 'Missing parameter'}
@@ -163,7 +163,7 @@ def handle_request(request):
                 response_headers = "HTTP/1.1 400 Bad Request\r\nContent-Type: application/json\r\n"
                 response_headers += "Access-Control-Allow-Origin: *\r\n"
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-                response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
         else:
             response_data = {'error': 'Function {} not support'.format(path)}
@@ -171,7 +171,7 @@ def handle_request(request):
             response_headers = "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n"
             response_headers += "Access-Control-Allow-Origin: *\r\n"
             response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-            response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+            response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
             response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
     except Exception as e:
         myprint("{} [Backend Server] Error detected: {}".format(get_now_string(), str(e)))
@@ -180,7 +180,7 @@ def handle_request(request):
         response_headers = "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n"
         response_headers += "Access-Control-Allow-Origin: *\r\n"
         response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
-        response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
+        response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy\r\n"
         response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
     myprint("{} [Backend Server] sent {}".format(get_now_string(), str(response)))
     print("[Headers]\n", response_headers)
