@@ -183,6 +183,7 @@ def handle_request(request):
         response_headers += "Access-Control-Allow-Headers: content-security-policy\r\n"
         response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
     myprint("{} [Backend Server] sent {}".format(get_now_string(), str(response)))
+    print("[Headers]\n", response_headers)
     return response_headers + "\r\n" + response
 
 
