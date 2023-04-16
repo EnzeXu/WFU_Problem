@@ -173,8 +173,8 @@ def handle_request(request):
             response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
             response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy, upgrade-insecure-requests, content-type, access-control-allow-origin, accept\r\n"
             response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
-    # except Exception as e:
-    #     myprint("{} [Backend Server] Error detected: {}".format(get_now_string(), str(e)))
+    except Exception as e:
+        myprint("{} [Backend Server] Error detected: {}".format(get_now_string(), str(e)))
     #     response_data = {'error': 'Invaild request'}
     #     response = json.dumps(response_data)
     #     response_headers = "HTTP/1.1 404 Not Found\r\nContent-Type: application/json\r\n"
