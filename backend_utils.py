@@ -95,6 +95,33 @@ def check_login(**kwargs):
     mysql = MySQLConnection()
     res = mysql.execute("select * from wfu_problem.`user` where `email` = '{}' and `password` = '{}';".format(email, password))
 
+    columns = mysql.execute("describe wfu_problem.`user`;")
+    columns = [item[0] for item in columns]
+
+    return_dic = dict({"result": 0})
+    if len(res) > 0:
+        return_dic["result"] = 1
+        user_info = dict()
+        print(columns)
+        print(res)
+        for i, one_key in enumerate(columns):
+            user_info[one_key] = res[i]
+        return_dic["user_info"] = user_info
+    return return_dic
+
+
+
+def get_all_group_list(**kwargs):
+    """
+    :return: example: {'result': 1}
+    """
+    mysql = MySQLConnection()
+    res = mysql.execute("select * from wfu_problem.`group`;")
+    columns = mysql.execute("describe wfu_problem.`group`;")
+    columns = [item[0] for item in columns]
+    print(res)
+    print(columns)
+
     return_dic = dict({"result": 0})
     if len(res) > 0:
         return_dic["result"] = 1
@@ -103,8 +130,9 @@ def check_login(**kwargs):
 
 if __name__ == "__main__":
     # print(get_user(userid="U0001"))
-    # print(check_login(email="test@wfu.edu", password="123456"))
+    print(check_login(email="test@wfu.edu", password="123456"))
     # print(join_group(userid="U0001", groupid="G0005"))
-    print(leave_group(userid="U0001", groupid="G0005"))
+    # print(get_all_group_list())
+    # print(leave_group(userid="U0001", groupid="G0005"))
     # print(get_group(groupid="G0001"))
     pass
