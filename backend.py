@@ -111,6 +111,23 @@ def handle_request(request):
                 response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
                 response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy, upgrade-insecure-requests, content-type, access-control-allow-origin, accept\r\n"
                 response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
+        elif path == '/getgrouplist':
+            if True:
+                response_dic = get_group_list()
+                response_data = {
+                    'info': {
+                        'request': full_query,
+                        'request_type': path,
+                    },
+                    'request': params,
+                    'response': response_dic,
+                }
+                response = json.dumps(response_data)
+                response_headers = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n"
+                response_headers += "Access-Control-Allow-Origin: *\r\n"
+                response_headers += "Access-Control-Allow-Methods: GET, POST, OPTIONS\r\n"
+                response_headers += "Access-Control-Allow-Headers: content-security-policy, referrer-policy, upgrade-insecure-requests, content-type, access-control-allow-origin, accept\r\n"
+                response_headers += "Referrer-Policy: strict-origin-when-cross-origin\r\n"
         elif path == '/joingroup':
             userid = params.get('userid')
             groupid = params.get('groupid')

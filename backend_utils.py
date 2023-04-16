@@ -2,6 +2,10 @@ import json
 from mysql import MySQLConnection
 
 
+def json_print(string):
+    print(json.dumps(string, indent=4))
+
+
 def get_user(**kwargs):
     """
     :return: example: {'userid': 'U0001', 'username': 'WFU Tester', 'password': '123456', 'email': 'test@wfu.edu', 'phone_number': '336-123-4567', 'skill': ['C++', 'JavaScript', 'PHP', 'Python'], 'interest': ['hiking', 'swimming', 'tennis'], 'group_list': [('G0001', 'WFU Problem'), ('G0002', 'Weekend Yoga'), ('G0003', 'Summer Camp'), ('G0004', 'PIT Menu - Ronald')]}
@@ -114,7 +118,7 @@ def check_login(**kwargs):
 
 
 
-def get_all_group_list(**kwargs):
+def get_group_list(**kwargs):
     """
     :return: example: {'result': 1}
     """
@@ -135,7 +139,7 @@ if __name__ == "__main__":
     # print(get_user(userid="U0001"))
     # print(check_login(email="test@wfu.edu", password="123456"))
     # print(join_group(userid="U0001", groupid="G0005"))
-    print(get_all_group_list())
+    json_print(get_group_list())
     # print(leave_group(userid="U0001", groupid="G0005"))
     # print(get_group(groupid="G0001"))
     pass

@@ -151,6 +151,63 @@ Check if one user's email matches this user's password.
 }
 ```
 
+## 6. Get Group List
+
+Returns information about all groups
+
+- **Endpoint**: `/getgrouplist`
+- **HTTP Method**: GET
+- **Request Parameters**:
+  - None
+- **Example Request**: `http://BACKEND_IP_ADDRESS:PORT/getgrouplist`
+- **Example Response**:
+
+```json
+{
+    "info": {
+        "request": "/getgrouplist",
+        "request_type": "/getgrouplist"
+    },
+    "request": {
+    },
+    "response": {
+        "result": 1,
+        "columns": [
+            "groupid",
+            "group_name",
+            "group_ddl"
+        ],
+        "group_list": [
+            [
+                "G0001",
+                "WFU Problem",
+                null
+            ],
+            [
+                "G0002",
+                "Weekend Yoga",
+                null
+            ],
+            [
+                "G0003",
+                "Summer Camp",
+                null
+            ],
+            [
+                "G0004",
+                "PIT Menu - Ronald",
+                null
+            ],
+            [
+                "G0005",
+                "Alaska Fishing",
+                null
+            ]
+        ]
+    }
+}
+```
+
 ---
 
 # Database Entity-Relationship Diagram
