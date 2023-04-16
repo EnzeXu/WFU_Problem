@@ -28,6 +28,7 @@ Returns information about a specific user.
         "password": "123456",
         "email": "test@wfu.edu",
         "phone_number": "336-123-4567",
+        "introduction": "I'm a freshman here at the university. I'm majoring in business and I'm really excited to learn more about entrepreneurship and marketing. In my free time, I love playing basketball, listening to music, and watching movies. I'm also really interested in getting involved in student organizations and volunteering in the community.",
         "skill": ["C++", "JavaScript", "PHP", "Python"],
         "interest": ["hiking", "swimming", "tennis"],
         "group_list": [["G0001", "WFU Problem"], ["G0002", "Weekend Yoga"], ["G0003", "Summer Camp"], ["G0004", "PIT Menu - Ronald"]]

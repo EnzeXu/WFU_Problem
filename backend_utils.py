@@ -1,3 +1,4 @@
+import json
 from mysql import MySQLConnection
 
 
@@ -121,20 +122,20 @@ def get_all_group_list(**kwargs):
     res = mysql.execute("select * from wfu_problem.`group`;")
     columns = mysql.execute("describe wfu_problem.`group`;")
     columns = [item[0] for item in columns]
-    print(res)
-    print(columns)
 
     return_dic = dict({"result": 0})
     if len(res) > 0:
         return_dic["result"] = 1
+        return_dic["columns"] = columns
+        return_dic["group_list"] = [list(item) for item in res]
     return return_dic
 
 
 if __name__ == "__main__":
     # print(get_user(userid="U0001"))
-    print(check_login(email="test@wfu.edu", password="123456"))
+    # print(check_login(email="test@wfu.edu", password="123456"))
     # print(join_group(userid="U0001", groupid="G0005"))
-    # print(get_all_group_list())
+    print(get_all_group_list())
     # print(leave_group(userid="U0001", groupid="G0005"))
     # print(get_group(groupid="G0001"))
     pass
