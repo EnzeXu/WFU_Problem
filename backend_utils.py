@@ -91,6 +91,7 @@ def check_login(**kwargs):
     """
     assert {"email", "password"}.issubset(kwargs.keys())
     email = kwargs.get("email")
+    print("email:", email)
     email = email.replace("%40", "@")
     password = kwargs.get("password")
     mysql = MySQLConnection()
