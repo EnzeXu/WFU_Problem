@@ -1,6 +1,6 @@
 import socket
 import json
-from datetime import datetime
+# from datetime import datetime
 
 from backend_utils import *
 
@@ -14,7 +14,7 @@ def myprint(string):
 
 
 def get_now_string():
-    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
 def handle_request(request):
