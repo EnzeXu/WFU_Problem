@@ -127,6 +127,7 @@ def get_group_list(**kwargs):
     """
     # assert {"keyword"}.issubset(kwargs.keys())
     keyword = kwargs.get("keyword")
+    keyword = keyword.replace("%22", "")
     if not keyword:
         keyword = ""
     mysql = MySQLConnection()
