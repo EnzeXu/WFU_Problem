@@ -158,17 +158,18 @@ Returns information about all groups
 - **Endpoint**: `/getgrouplist`
 - **HTTP Method**: GET
 - **Request Parameters**:
-  - None
-- **Example Request**: `http://BACKEND_IP_ADDRESS:PORT/getgrouplist`
+  - `keyword` (string): keyword for group_name.
+- **Example Request**: `http://BACKEND_IP_ADDRESS:PORT/getgrouplist?keyword=wfu`
 - **Example Response**:
 
 ```json
 {
     "info": {
-        "request": "/getgrouplist",
+        "request": "/getgrouplist?keyword=wfu",
         "request_type": "/getgrouplist"
     },
     "request": {
+        "keyword": "wfu"
     },
     "response": {
         "result": 1,
@@ -178,31 +179,11 @@ Returns information about all groups
             "group_ddl"
         ],
         "group_list": [
-            [
-                "G0001",
-                "WFU Problem",
-                null
-            ],
-            [
-                "G0002",
-                "Weekend Yoga",
-                null
-            ],
-            [
-                "G0003",
-                "Summer Camp",
-                null
-            ],
-            [
-                "G0004",
-                "PIT Menu - Ronald",
-                null
-            ],
-            [
-                "G0005",
-                "Alaska Fishing",
-                null
-            ]
+            {
+                "groupid": "G0001",
+                "group_name": "WFU Problem",
+                "group_ddl": "2023-05-01 00:00:00"
+            }
         ]
     }
 }
