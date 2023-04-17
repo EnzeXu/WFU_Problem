@@ -1,3 +1,4 @@
+import datetime
 import json
 from mysql import MySQLConnection
 
@@ -47,6 +48,8 @@ def get_group(**kwargs):
     if len(res) > 0:
         for i, one_key in enumerate(columns):
             return_dic[one_key] = res[0][i]
+            if isinstance(return_dic[one_key], datetime.datetime):
+                return_dic[one_key] = str(return_dic.get(one_key))
     res_user = mysql.execute("select a.userid, username from (wfu_problem.`user_has_group` a join wfu_problem.`user` b on a.userid=b.userid) where `groupid` = '{}';".format(groupid))
     user_list = [item for item in res_user]
     user_list = sorted(user_list, key=lambda x: x[0])
@@ -122,16 +125,32 @@ def get_group_list(**kwargs):
     """
     :return: example: {'result': 1}
     """
+    # assert {"keyword"}.issubset(kwargs.keys())
+    keyword = kwargs.get("keyword")
+    if not keyword:
+        keyword = ""
     mysql = MySQLConnection()
-    res = mysql.execute("select * from wfu_problem.`group`;")
+    if len(keyword) == 0:
+        res = mysql.execute("select * from wfu_problem.`group`;")
+    else:
+        res = mysql.execute("select * from wfu_problem.`group` where group_name LIKE '%{}%';".format(keyword))
+    res_format = []
     columns = mysql.execute("describe wfu_problem.`group`;")
     columns = [item[0] for item in columns]
+    for item in res:
+        group_dic = dict()
+        for i, one_col in enumerate(columns):
+            group_dic[one_col] = item[i]
+            if isinstance(group_dic[one_col], datetime.datetime):
+                group_dic[one_col] = str(group_dic.get(one_col))
+        res_format.append(group_dic)
+
 
     return_dic = dict({"result": 0})
+    return_dic["columns"] = columns
     if len(res) > 0:
         return_dic["result"] = 1
-        return_dic["columns"] = columns
-        return_dic["group_list"] = [list(item) for item in res]
+        return_dic["group_list"] = res_format
     return return_dic
 
 
@@ -139,7 +158,7 @@ if __name__ == "__main__":
     # print(get_user(userid="U0001"))
     # print(check_login(email="test@wfu.edu", password="123456"))
     # print(join_group(userid="U0001", groupid="G0005"))
-    json_print(get_group_list())
+    json_print(get_group_list(keyword="wfu"))
     # print(leave_group(userid="U0001", groupid="G0005"))
-    # print(get_group(groupid="G0001"))
+    # json_print(get_group(groupid="G0001"))
     pass
